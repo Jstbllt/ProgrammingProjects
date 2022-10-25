@@ -1,0 +1,322 @@
+<html>
+    <head Access-Control-Allow-Origin: *>
+        <title>SHOP</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="style.css">
+        <script>
+            var baseurl = "http://localhost:8080/rest.shop/rest";
+
+            var footer = `<footer><button onclick="loadUsers()">Users</button></footer>`
+            //Function for Load all the items on the Home Page
+            function loadItems(){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", baseurl + "/items", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var items = JSON.parse(xmlhttp.responseText);
+                        var buttons = `
+                            <div id="searchBy">
+                            <button onClick="loadItemsByCategory('BOOK')">BOOK</button>
+                            <button onClick="loadItemsByCategory('VIDEO_GAMES')">VIDEO_GAMES</button> 
+                            <button onClick="loadItemsByCategory('DVD')">DVD</button> 
+                            <button onClick="addItem()">ADD AN ITEM</button> 
+                            `;
+                        var searchcontainer = `
+                            <div id="searchByKeyword">
+                                <input type="text" name="keyword" value="" id='keyword' placeholder="Enter a Keyword" required>
+                                <button id="searchByKeywordButton" type="submit" value="Submit!" onClick="loadItemsByKeyword()">Submit</button>
+                            </div>
+                            </div>`;
+                        var tbltop = `<table>
+                            <thead>
+                                <tr>
+                                    <th colspan="7">Our Items</th>
+                                </tr>
+                            </thead>
+                            <tr><th>Id</th><th>Name</th><th>Category</th><th>Description</th><th>year</th><th>Land or Sell</th><th>City</th></tr>`;
+                        var main ="";
+                        for (i = 0; i < items.length; i++){
+                        main += "<tr  onclick=loadOneItems("+items[i]['id']+");><td>"+items[i]['id']+"</td><td>"+items[i]['name']+"</td><td>"+items[i]['category']+"</td><td>"+items[i]['description']+"</td><td>"+items[i]['year']+"</td><td>"+items[i]['landOrSell']+"</td><td>"+items[i]['owner']['city']+"</td></tr>";
+                        }
+                        var tblbottom = "</table>";
+                        var tbl = buttons + searchcontainer + tbltop + main + tblbottom +footer;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+            window.onload = function(){
+                loadItems();
+            }
+
+            //Function to load One Item
+            function loadOneItems(itemNumber){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", baseurl + "/items/" + itemNumber, true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var items = JSON.parse(xmlhttp.responseText);
+                        var button = `<button id="returnButton" onclick="loadItems()">Return</button>`
+                        var tbltop = `<table>
+                            <thead>
+                                <tr>
+                                    <th colspan="2">The Item</th>
+                                </tr>
+                            </thead>`;
+                        var main ="";
+                        if(items['futureOwner'] !== null){
+                            main += "<tr><th>Id </th><td>"+items['id']+"</td></tr><tr><th>Name</th><td>"+items['name']+"</td></tr><tr><th>Category</th><td>"+items['category']+"</td></tr><tr><th>Description</th><td>"+items['description']+"</td></tr><tr><th>Year</th><td>"+items['year']+"</td></tr><tr><th>Land Or Sell</th><td>"+items['landOrSell']+"</td></tr><tr><th>Rate</th><td>"+items['rate']+"</td></tr><tr><th>City</th><td>"+items['owner']['city']+"</td></tr><tr><th>Owner</th><td>"+items['owner']['firstname']+ " " +items['owner']['lastname']+"</td></tr><tr><th>Disponibility</th><td>"+items['disponibility']+"</td></tr><tr><th>Actual User</th><td>"+items['futureOwner']['firstname']+ " " +items['futureOwner']['lastname']+"</td></tr>";
+                            var addByOrBorrow = "";
+                        }
+                        else{
+                            main += "<tr><th>Id </th><td>"+items['id']+"</td></tr><tr><th>Name</th><td>"+items['name']+"</td></tr><tr><th>Category</th><td>"+items['category']+"</td></tr><tr><th>Description</th><td>"+items['description']+"</td></tr><tr><th>Year</th><td>"+items['year']+"</td></tr><tr><th>Land Or Sell</th><td>"+items['landOrSell']+"</td></tr><tr><th>Rate</th><td>"+items['rate']+"</td></tr><tr><th>City</th><td>"+items['owner']['city']+"</td></tr><tr><th>Owner</th><td>"+items['owner']['firstname']+ " " +items['owner']['lastname']+"</td></tr><tr><th>Disponibility</th><td>"+items['disponibility']+"</td></tr><tr><th>Actual User</th><td>-</td></tr>";
+                            var addByOrBorrow = `<button  onclick="updateBuyOrBorrow(`+items['id']+`)">`+items['landOrSell']+`</button>`;
+                        }
+
+                        var returnProduct = "";
+                        //To give back the product after land it
+                        if((items['futureOwner'] !== null) && items['landOrSell'] === "LAND"){
+                            returnProduct += `<button  onclick="returnProduct(`+items['id']+`)">Return the product</button>`;
+                        }
+
+                        //DELETE A PRODUCT
+                        var deleteProductButton = `<button id="deleteButton" onclick="deleteProduct(`+items['id']+`)">DELETE ITEM</button>`;
+                        
+                        var tbltop1 = `<table> 
+                            <thead>
+                                <tr>
+                                    <th colspan="4">The Recommendations</th>
+                                </tr>
+                            </thead>`;
+                        var main1 ="";
+                        if (items['recommendation'].length > 0){
+                            tbltop1 += `<tr><th>Title</th><th>Comment</th><th>Publisher</th><th>City</th></tr>`;
+                            for (i = 0; i < items['recommendation'].length; i++){
+                                main1 += "<tr><td>"+items['recommendation'][i]['title']+"</td><td>"+items['recommendation'][i]['comment']+"</td><td>"+items['recommendation'][i]['publisher']['firstname'] + " " +items['recommendation'][i]['publisher']['lastname'] +"</td><td>"+items['recommendation'][i]['publisher']['city']+"</td></tr>";
+                            }
+                        }
+                        else{
+                            main1 = `<table> 
+                            <tbody>
+                                <tr>
+                                    <th colspan="4">There is no recommendations for this product</th>
+                                </tr>
+                            </tbody>`;
+                        }
+                        
+                        var tblbottom = "</table> </br>";
+                        var tblbottom1 = "</table>";
+
+                        var itemId = items['id'];
+                        var addRecommendation = `<div id="addRecommendationButton"><button  onclick="addRecommendation(`+itemId+`)">ADD Recommendation</button>`;
+                        var addEnd = `</div>`;
+                        var tbl = button + tbltop + main + tblbottom + tbltop1 + main1 + tblbottom1 + addRecommendation + addByOrBorrow + returnProduct + addEnd + deleteProductButton + footer;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+
+                
+            }
+
+            //Print by category
+            function loadItemsByCategory(category){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", baseurl + "/items/category/" + category, true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var items = JSON.parse(xmlhttp.responseText);
+                        var buttons = `
+                            <div id="searchBy">
+                            <button onClick="loadItemsByCategory('BOOK')">BOOK</button>
+                            <button onClick="loadItemsByCategory('VIDEO_GAMES')">VIDEO_GAMES</button> 
+                            <button onClick="loadItemsByCategory('DVD')">DVD</button>`;
+                        var button = `<button onclick="loadItems()">ALL Items</button>`;
+                        var searchcontainer = `
+                            <div>
+                                <input type="text" name="keyword" value="" id='keyword' placeholder="Enter a Keyword" required>
+                                <button type="submit" value="Submit!" onClick="loadItemsByKeyword()">Submit</button>
+                            </div>
+                            </div>`;
+                        var tbltop = `<table>
+                            <thead>
+                                <tr>
+                                    <th colspan="7">Our Items</th>
+                                </tr>
+                            </thead>
+                            <tr><th>Id</th><th>Name</th><th>Category</th><th>Description</th><th>year</th><th>Land or Sell</th><th>City</th></tr>`;
+                        var main ="";
+                        for (i = 0; i < items.length; i++){
+                        main += "<tr  onclick=loadOneItems("+items[i]['id']+");><td>"+items[i]['id']+"</td><td>"+items[i]['name']+"</td><td>"+items[i]['category']+"</td><td>"+items[i]['description']+"</td><td>"+items[i]['year']+"</td><td>"+items[i]['landOrSell']+"</td><td>"+items[i]['owner']['city']+"</td></tr>";
+                        }
+                        var tblbottom = "</table>";
+                        var tbl = buttons + button + searchcontainer + tbltop + main + tblbottom + footer;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Print by keyword
+            function loadItemsByKeyword(){
+                var xmlhttp = new XMLHttpRequest();
+                var keyword = document.getElementById("keyword").value;
+                xmlhttp.open("GET", baseurl + "/items/keyword/" + keyword, true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var items = JSON.parse(xmlhttp.responseText);
+                        var buttons = `
+                            <div id="searchBy">
+                            <button onClick="loadItemsByCategory('BOOK')">BOOK</button>
+                            <button onClick="loadItemsByCategory('VIDEO_GAMES')">VIDEO_GAMES</button> 
+                            <button onClick="loadItemsByCategory('DVD')">DVD</button>`;
+                        var searchcontainer = `
+                            <div>
+                                <input type="text" name="keyword" value="" id='keyword' placeholder="Enter a Keyword" required>
+                                <button type="submit" value="Submit!" onClick="loadItemsByKeyword()">Submit</button>
+                            </div>
+                            </div>`;
+                        var button = `<button onclick="loadItems()">ALL Items</button>`;
+                        var tbltop = `<table>
+                            <thead>
+                                <tr>
+                                    <th colspan="7">Our Items</th>
+                                </tr>
+                            </thead>
+                            <tr><th>Id</th><th>Name</th><th>Category</th><th>Description</th><th>year</th><th>Land or Sell</th><th>City</th></tr>`;
+                        var main ="";
+                        for (i = 0; i < items.length; i++){
+                        main += "<tr  onclick=loadOneItems("+items[i]['id']+");><td>"+items[i]['id']+"</td><td>"+items[i]['name']+"</td><td>"+items[i]['category']+"</td><td>"+items[i]['description']+"</td><td>"+items[i]['year']+"</td><td>"+items[i]['landOrSell']+"</td><td>"+items[i]['owner']['city']+"</td></tr>";
+                        }
+                        var tblbottom = "</table>";
+                        var tbl = buttons + button + searchcontainer + tbltop + main + tblbottom + footer;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Add an item
+            function addItem(){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://localhost:8080/rest.shop/create_item.html", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var buttons = `
+                            <div id="searchBy">
+                            <button onClick="loadItemsByCategory('BOOK')">BOOK</button>
+                            <button onClick="loadItemsByCategory('VIDEO_GAMES')">VIDEO_GAMES</button> 
+                            <button onClick="loadItemsByCategory('DVD')">DVD</button>`;
+                        var searchcontainer = `
+                            <div>
+                                <input type="text" name="keyword" value="" id='keyword' placeholder="Enter a Keyword" required>
+                                <button type="submit" value="Submit!" onClick="loadItemsByKeyword()">Submit</button>
+                            </div>
+                            </div>`;
+                        var button = `<button onclick="loadItems()">ALL Items</button>`;
+                        var title = `<h2>Add an item</h2>`
+                        var itemForm = xmlhttp.response;                        
+                        var tbl = buttons + button + searchcontainer + title +itemForm;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Add a recommendation
+            function addRecommendation(itemId){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://localhost:8080/rest.shop/create_recommendation.html", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                       var text = `<div> <h2> You are going to put a recommendation on the item ` + itemId + ` </h2> </div>`;
+                       var button = `<button id="returnButton" onclick="loadItems()">Return</button>`
+                        var recommendationForm = xmlhttp.response;                        
+                        var tbl = button + text + recommendationForm;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Update the state of an item
+            function updateBuyOrBorrow(itemId){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", "http://localhost:8080/rest.shop/buy_or_borrow_product.html", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                       var text = `<div> <h2> You are going to by or borrow the item ` + itemId + ` </h2> </div>`;
+                       var button = `<button onclick="loadItems()">Return</button>`
+                        var recommendationForm = xmlhttp.response;                        
+                        var tbl = button + text + recommendationForm;
+                        document.getElementById("items").innerHTML = tbl;
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Function to return a product
+            function returnProduct(itemNumber){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("POST", "http://localhost:8080/rest.shop/rest/items/"+ itemNumber +"/returnProduct", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                       loadItems();
+                    }
+                };
+                xmlhttp.send();
+            }
+            
+            //Function to delete a Product
+            function deleteProduct(itemNumber){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("POST", "http://localhost:8080/rest.shop/rest/items/"+ itemNumber +"/deleteProduct", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                       loadItems();
+                    }
+                };
+                xmlhttp.send();
+            }
+
+            //Function to load the users
+            function loadUsers(){
+                var xmlhttp = new XMLHttpRequest();
+                xmlhttp.open("GET", baseurl + "/users", true);
+                xmlhttp.onreadystatechange = function(){
+                    if(xmlhttp.readyState ===4 && xmlhttp.status ===200){
+                        var i;
+                        var xmlDoc = xmlhttp.responseXML;
+                        var table =
+                            `<table>
+                                <thead>
+                                <tr>
+                                    <th colspan="4">Our Users</th>
+                                </tr>
+                            </thead>
+                                <tr><th>Firstname</th><th>Lastname</th><th>City</th>
+                            </tr>`;
+                        var x = xmlDoc.getElementsByTagName("user");
+                        // Start to fetch the data by using TagName 
+                        for (i = 0, x; i < x.length; i++) {
+                            table += "<tr><td>" +
+                                x[i].getElementsByTagName("firstname")[0].innerHTML + "</td><td>" +
+                                x[i].getElementsByTagName("lastname")[0].innerHTML + "</td><td>" +
+                                x[i].getElementsByTagName("city")[0].innerHTML + "</td></tr>";
+                        }
+                        table += `</table>`
+                        var button = `<button id="returnButton" onclick="loadItems()">Return</button>`
+                        // Print the xml data in table form
+                        document.getElementById("items").innerHTML = button + table + footer;
+                    }
+                };
+                xmlhttp.send();
+            }
+            
+        </script>
+    </head>
+    <body>
+        <h1>ITEMS SHOP</h1>
+        <div id="items"></div>
+    </body>
+</html>

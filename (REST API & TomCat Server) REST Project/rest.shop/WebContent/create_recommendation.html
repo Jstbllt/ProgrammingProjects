@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Form to create a new resource</title>
+ </head>
+<body>
+  <form action="http://localhost:8080/rest.shop/rest/items/{item}/addRecommendation" method="POST">
+  <div>
+  <label for="id">Id of the Item</label>
+  <input name="id" />
+  </div>
+  
+  <div>
+  <label for="title">Title</label>
+  <input name="title" />
+  </div>
+  
+  <div>
+  Comment:
+  <TEXTAREA NAME="comment" COLS=40 ROWS=6></TEXTAREA>
+  </div>
+  
+  <div>
+	<label for="stars">Choose a grade for this product:</label>
+	<select name="stars" id="stars">
+	    <option value="0">--Please choose a grade--</option>
+	    <option value="1">1</option>
+	    <option value="2">2</option>
+	    <option value= "3">3</option>
+	    <option value="4">4</option>
+	    <option value="5">5</option>
+	</select>
+	</div>
+
+	<div>
+  <label for="publisher">ID of the publisher</label>
+  <input name="publisher" />
+  </div>
+  <input type="submit" value="Submit" />
+  </form>
+</body>
+</html> 

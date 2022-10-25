@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Form to create a new resource</title>
+ </head>
+<body>
+  <form action="http://localhost:8080/rest.shop/rest/items/{item}/by_or_borrow" method="POST">
+	
+	<div>
+  <label for="idItem">Enter the ID of the item</label>
+  <input name="idItem" />
+  </div>
+  
+  <div>
+  <label for="futurOwner">Enter your ID</label>
+  <input name="futurOwner" />
+  </div>
+  
+  <input type="submit" value="Submit" />
+  </form>
+</body>
+</html> 

@@ -1,0 +1,84 @@
+body{
+    position : relative;
+}
+
+table{
+    width : 80%;
+    text-align: center;
+    margin : 0 auto;
+}
+table,td {
+    border: 1px solid #333;
+}
+
+thead, tfoot {
+    background-color: #333;
+    color: #fff;
+}
+
+th{
+    padding : 1%;
+}
+
+tr:hover{
+    background-color: lightgrey;
+}
+
+#searchBy{
+    text-align: center; 
+}
+
+h1{
+    text-align: center;
+    padding: 0.5%;
+    margin: 2%;
+    border-bottom: 1px solid grey ;
+}
+
+h2{
+    text-align: center;
+}
+
+button, select{
+    padding: 0.5%;
+    margin: 0.5%;
+}
+
+#deleteButton{
+    margin-left: 2%;
+    margin-bottom: 8%;
+}
+
+#returnButton{
+    margin-left: 2%;
+}
+
+input{
+    padding:0.5%;
+}
+
+form{
+    margin : 2%;
+    padding: 1%;
+    border : 1px solid black;
+    text-align: center;
+    margin-bottom: 8%;
+}
+
+form div{
+    margin: 1%;
+}
+
+#addRecommendationButton{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    text-align: center; 
+}
+
+footer{
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height : 50px;
+    width: 96%;
+    border-top: 1px solid grey ;
+    margin: 2%;
+}

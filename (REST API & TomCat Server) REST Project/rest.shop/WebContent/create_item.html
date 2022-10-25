@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Form to create a new resource</title>
+ </head>
+<body>
+  <form action="http://localhost:8080/rest.shop/rest/items" method="POST">	
+	<div>
+	<label for="category">Choose a grade for this product:</label>
+	<select name="category" id="category">
+	    <option value="BOOK">BOOK</option>
+	    <option value="VIDEO_GAMES">VIDEO_GAMES</option>
+	    <option value= "DVD">DVD</option>
+	</select>
+	</div>
+
+	<div>
+  <label for="name">Name</label>
+  <input name="name" />
+  </div>
+  
+  <div>
+  Description:
+  <TEXTAREA NAME="description" COLS=40 ROWS=6></TEXTAREA>
+	</div>
+	
+	<div>
+  <label for="year">current year</label>
+  <input name="year" />
+	</div>
+	
+  <div>
+  <label for="owner">ID of the owner</label>
+  <input name="owner" />
+  </div>
+  
+  <div>
+	<label for="landOrSell">Choose a grade for this product:</label>
+	<select name="landOrSell" id="landOrSell">
+	    <option value="LAND">LAND</option>
+	    <option value="SELL">SELL</option>
+	</select>
+	</div>
+  
+  <input type="submit" value="Submit" />
+  </form>
+</body>
+</html> 
