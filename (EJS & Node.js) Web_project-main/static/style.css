@@ -1,0 +1,75 @@
+/*------------------------------------ FONTS ------------------------------------------*/
+@font-face {
+    font-family: "CaviarDreams";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams.ttf");
+}
+@font-face {
+    font-family: "CaviarDreamsBold";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams_Bold.ttf");
+}
+@font-face {
+    font-family: "CaviarDreamsItalic";
+    src: url("../static/fonts/caviar_dreams/CaviarDreams_Italic.ttf");
+}
+/*------------------------------------*/
+@font-face {
+    font-family: "LouisGeorge";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe.ttf");
+}
+@font-face {
+    font-family: "LouisGeorgeBold";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe Bold.ttf");
+}
+@font-face {
+    font-family: "LouisGeorgeItalic";
+    src: url("../static/fonts/louis_george_caf/Louis George Cafe Italic.ttf");
+}
+
+/*------------------------------------ STRUCTURE OF THE PAGE ------------------------------------------*/
+
+body {
+    font-family: LouisGeorge, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    background: #F2F3F4;
+}
+
+/*-------------------------------------------- ELEMENTS -----------------------------------------------*/
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: inherit;
+}
+
+.hotpink,  a:hover {
+    color: hotpink;
+}
+
+.pink{
+    background: #F8BBD0;
+}
+
+.blue{
+    background: #D6EAF8;
+}
+
+.yellow{
+    background: #FCF3CF;
+}
+
+/*------------------------------------ SPECIFIC CLASSES/ELEMENTS ----------------------------------------*/
+
+#logo {
+    width: 15vw;
+    height: auto;
+}
+
+#icon{
+    width: 5vw;
+    height: auto;
+    margin: 2vw;
+}
+
+.PP img {
+    height: 13vw;
+    width: 13vw;
+    border-radius: 50%;
+}

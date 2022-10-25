@@ -1,0 +1,425 @@
+/*------------------------------------ FONTS ------------------------------------------*/
+@font-face {
+    font-family: "CaviarDreams";
+    src: url("../fonts/caviar_dreams/CaviarDreams.ttf");
+}
+
+.CaviarDreams {
+    font-family: CaviarDreams, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "CaviarDreamsBold";
+    src: url("../fonts/caviar_dreams/CaviarDreams_Bold.ttf");
+}
+
+.CaviarDreamsBold {
+    font-family: CaviarDreamsBold, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+@font-face {
+    font-family: "CaviarDreamsItalic";
+    src: url("../fonts/caviar_dreams/CaviarDreams_Italic.ttf");
+}
+
+.CaviarDreamsItalic {
+    font-family: CaviarDreamsItalic, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+/*------------------------------------*/
+@font-face {
+    font-family: "LouisGeorge";
+    src: url("../fonts/louis_george_caf/Louis George Cafe.ttf");
+}
+
+@font-face {
+    font-family: "LouisGeorgeBold";
+    src: url("../fonts/louis_george_caf/Louis George Cafe Bold.ttf");
+}
+
+@font-face {
+    font-family: "LouisGeorgeItalic";
+    src: url("../fonts/louis_george_caf/Louis George Cafe Italic.ttf");
+}
+
+/*------------------------------------ SIZING RELATIVE TO VIEWPORT ------------------------------------------*/
+
+.vh-10 {
+    height: 10vh;
+}
+
+.vw-10 {
+    width: 10vh;
+}
+
+.vh-25 {
+    height: 25vh;
+}
+
+.vw-25 {
+    width: 25vh;
+}
+
+.vw-45 {
+    width: 45vw;
+}
+
+.min-width-content {
+    min-width: fit-content;
+}
+
+.max-width-content {
+    max-width: fit-content;
+}
+
+/*------------------------------------ BACKGROUND COLORS ------------------------------------------*/
+
+/*---PRIMARY---*/
+.bg-blue1 {
+    background: #184C78;
+}
+
+.bg-blue2 {
+    background: #13678A;
+}
+
+.bg-blue_green {
+    background: #0E9BA1;
+}
+
+.bg-turquoise {
+    background: #16DBB7;
+}
+
+.bg-light_green {
+    background: #DBFCBB;
+}
+
+/*---SECONDARY---*/
+.bg-blue3 {
+    background: #012030;
+}
+
+.bg-blue4 {
+    background: #0B2B40;
+}
+
+.bg-blue5 {
+    background: #154666;
+}
+
+.bg-green {
+    background: #008E73;
+}
+
+.bg-green-1 {
+    background-color: #008e743a;
+}
+
+.bg-apple-green {
+    background: #BDEF04;
+}
+
+.bg-grey {
+    background-color: rgb(250, 250, 250);
+}
+
+.bg-light-grey {
+    background: lightgray;
+}
+
+/*------------------------------------ FONTS JUSTIFICATION -----------------------------------*/
+
+.text-justify {
+    text-align: justify;
+}
+
+/*------------------------------------ FONTS COLORS ------------------------------------------*/
+.f-blue1 {
+    color: #184C78;
+}
+
+.f-blue2 {
+    color: #13678A;
+}
+
+.f-blue_green {
+    color: #0E9BA1;
+}
+
+.f-turquoise {
+    color: #16DBB7;
+}
+
+.f-light_green {
+    color: #DBFCBB;
+}
+
+.f-white {
+    color: white;
+}
+
+.f-white-green {
+    color: #D0ECE7;
+}
+
+
+/*------------------------------------ LINK HOVER COLORS ------------------------------------------*/
+
+.link-blue-green:hover {
+    color: #0E9BA1;
+}
+
+.link-turquoise:hover {
+    color: #16DBB7;
+}
+
+.link-white:hover {
+    color: white;
+}
+
+.link-marine-blue:hover {
+    color: #012030;
+}
+
+/*------------------------------------ BUTTON HOVER COLORS ------------------------------------------*/
+
+.btn-link-turquoise:hover {
+    background: #16DBB7;
+}
+
+.btn-link-white:hover {
+    background: white;
+    border-color: #0E9BA1;
+}
+
+.btn-link-grey:hover {
+    background: dimgray;
+}
+
+/*------------------------------------ BORDER RADIUS PROPERTIES -------------------------------------*/
+
+.rounded-4 {
+    border-radius: 1vw;
+}
+
+.rounded-ul-top {
+    border-top-left-radius: 1vw;
+    border-top-right-radius: 1vw;
+}
+
+.rounded-ul-bottom {
+    border-bottom-left-radius: 1vw;
+    border-bottom-right-radius: 1vw;
+}
+
+/*--------------------------------------------- IMG -------------------------------------------------*/
+#header-logo,
+.img_logo {
+    width: 200px;
+    height: 55px;
+}
+
+#footer-logo,
+#pdf_img {
+    width: 75px;
+    height: 75px;
+}
+
+#icon {
+    height: 1.5vh;
+    width: auto;
+}
+
+#icon2 {
+    height: 2.5vh;
+    width: auto;
+}
+
+#allergie {
+    width: 10vw;
+    height: auto;
+}
+
+#carousel {
+    width: 350px;
+    height: auto;
+    border-radius: 5vw;
+}
+
+/*--------------------------------------------------------------------------------------------------------------*/
+
+.nav-container input[type="checkbox"]:checked~.logo {
+    display: none;
+}
+
+.div_ordo {
+    transition: transform 0.2s ease;
+    /* position: relative; */
+    width: fit-content;
+    box-shadow: 0 4px 6px 0 rgba(22, 22, 26, 0.18);
+    border-radius: 1em;
+    border: 0;
+    margin: 2.5em 1em 2.5em 1em;
+    padding: 1em;
+}
+
+.div_ordo:hover {
+    /* margin: 0.5em 2.5em 0.5em 0; */
+    transform: scale(1.1);
+
+}
+
+.choix_inscription:hover {
+    transition: transform 0.2s ease;
+    transform: scale(1.1);
+
+}
+
+.display_h:hover {
+    display: block;
+}
+
+.display_h {
+    display: none;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.w-40 {
+    width: 40%;
+}
+
+.w-30 {
+    width: 30%;
+}
+
+/* MEDECIN */
+
+#fleche_creeOrdo:hover,
+#fleche_ScanOrdo:hover {
+    cursor: pointer;
+}
+
+.border-dash {
+    border: 2px dashed gray;
+    border-radius: 10px;
+}
+
+#loupe {
+    width: 30px;
+}
+
+#tit_cont {
+    background-color: white;
+    border-radius: 2em;
+    position: relative;
+    top: -50px;
+    padding: 1em;
+    width: fit-content;
+    margin: 0;
+}
+
+
+/* ORDONNANCE */
+
+#prescription {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+#ordonnance {
+    width: 65%;
+}
+
+.mlr-17p {
+    margin: 0 17%;
+}
+
+.resize-h {
+    resize: horizontal;
+}
+
+.h-10 {
+    height: 10%;
+}
+
+.w-30 {
+    width: 31%;
+}
+
+.w-28 {
+    min-width: 28%;
+}
+
+.w-70 {
+    width: 70%;
+}
+
+.w-15 {
+    width: 15%;
+}
+
+.top-20 {
+    top: 20px;
+}
+
+.mx-20 {
+    margin: 0 20%;
+}
+
+.mx-25 {
+    margin: 1em 25%;
+}
+
+.minwmax {
+    min-width: max-content;
+}
+
+#validcontainer {
+    background-color: rgb(99, 162, 99);
+    padding: 1em;
+    width: 50%;
+    align-items: center;
+}
+
+#validcontainer_ph {
+    background-color: rgb(99, 162, 99);
+    padding: 1em;
+    align-items: center;
+    margin: 0 1em;
+}
+
+.mx-40 {
+    margin: 0 40%;
+}
+
+.box {
+    width: 25px;
+    height: 25px;
+}
+
+.fs-08 {
+    font-size: 0.8em;
+}
+
+@media (max-width: 1000px) {
+    #nav_ls {
+        display: none !important;
+    }
+
+    #ordonnance {
+        width: 100% !important;
+        margin: 0;
+    }
+
+    #container_vue_ph {
+        display: block !important;
+    }
+
+    div.wb40 {
+        width: 100% !important;
+    }
+}
