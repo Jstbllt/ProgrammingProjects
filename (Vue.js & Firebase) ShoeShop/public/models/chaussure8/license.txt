@@ -1,0 +1,11 @@
+Model Information:
+* title:	Nike air jordan
+* source:	https://sketchfab.com/3d-models/nike-air-jordan-7e2245d7407e421ab915a67f7a6d7b81
+* author:	n-malmberg (https://sketchfab.com/n-malmberg)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Nike air jordan" (https://sketchfab.com/3d-models/nike-air-jordan-7e2245d7407e421ab915a67f7a6d7b81) by n-malmberg (https://sketchfab.com/n-malmberg) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

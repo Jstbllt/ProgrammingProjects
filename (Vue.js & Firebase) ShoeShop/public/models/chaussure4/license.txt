@@ -1,0 +1,11 @@
+Model Information:
+* title:	Red Adidas Track Shoe
+* source:	https://sketchfab.com/3d-models/red-adidas-track-shoe-0ba5f1c809994c99b4d8aa97e0ed3413
+* author:	Arkify (https://sketchfab.com/arkify)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Red Adidas Track Shoe" (https://sketchfab.com/3d-models/red-adidas-track-shoe-0ba5f1c809994c99b4d8aa97e0ed3413) by Arkify (https://sketchfab.com/arkify) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
